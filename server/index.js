@@ -6,6 +6,9 @@ const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const cors = require("cors");
+
+
 if (process.env.NODE_ENV !== "PRODUCTION") {
   const dotenv = require("dotenv");
   dotenv.config();
@@ -31,6 +34,7 @@ const order = require("./routes/orderRoutes");
 const admin = require("./routes/adminRoutes");
 
 //middlewares
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
