@@ -2,17 +2,17 @@ const express = require("express");
 const app = express();
 
 const cookieParser = require("cookie-parser");
-const path = require('path')
+const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
-if(process.env.NODE_ENV !== "PRODUCTION"){
-  const dotenv = require('dotenv')
-  dotenv.config()
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  const dotenv = require("dotenv");
+  dotenv.config();
 }
 
 //db connection
-const connection = require("./database/connection")
+const connection = require("./database/connection");
 connection();
 
 //middleware require
@@ -26,9 +26,9 @@ process.on("uncaughtException", (err) => {
 });
 
 //routes import
-const user = require('./routes/userRoutes');
-const order = require('./routes/orderRoutes')
-const admin = require('./routes/adminRoutes')
+const user = require("./routes/userRoutes");
+const order = require("./routes/orderRoutes");
+const admin = require("./routes/adminRoutes");
 
 //middlewares
 app.use(express.json());
@@ -36,9 +36,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //routes
-app.use('/api/user',user);
-app.use('/api/order',order);
-app.use('/api/admin',admin);
+app.use("/api/user", user);
+app.use("/api/order", order);
+app.use("/api/admin", admin);
 
 //error middleware
 app.use(errorMiddleware);
@@ -51,9 +51,15 @@ const port = process.env.PORT || 4000;
 //     res.sendFile(path.resolve(__dirname , '../client/build/index.html'))
 // })
 
-app.get('/',(req,res)=>{
-  res.status(200).json({message:"Circuit flare backend"})
-})
+app.get("/", (req, res) => {
+  res.status(200).json({ message: "Circuit flare backend" });
+});
+
+app.use(express.static(__dirname)); //here is important thing - no static directory, because all static :)
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 app.listen(port, () => {
   console.log(`Server running on port : ${port}`);
