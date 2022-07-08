@@ -73,11 +73,14 @@ exports.loginUser = asyncErrorHandler(async (req, res, next) => {
     secure: true,
   });
 
+  //for production env
+
   res.status(201).json({
     message: "User Logged in successfully",
     success: true,
     user,
     token,
+    res,
   });
 });
 
