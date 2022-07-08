@@ -10,8 +10,7 @@ const User = require("../database/models/userSchema");
 exports.createOrder = asyncErrorHandler(async (req, res, next) => {
   const order = new Order({
     ...req.body,
-    paidAt: Date.now(),
-    userId: req.user._id,
+    paidAt: Date.now()
   });
   
   // console.log(req.body.cartItems)
@@ -22,9 +21,9 @@ exports.createOrder = asyncErrorHandler(async (req, res, next) => {
 
   await sendEmail(
     {
-      email: req.user.email,
+      email: req.body.deliveryInfo.email,
       subject: "Your Order Has Been Placed!",
-      username: req.user.username,
+      username: req.body.deliveryInfo.firstname + " " + req.body.deliveryInfo.lastname,
       message: "Your Order Has Been Placed!",
       orderId: req.body.orderNumber,
     },
@@ -35,7 +34,7 @@ exports.createOrder = asyncErrorHandler(async (req, res, next) => {
 });
 
 exports.getUserOrders = asyncErrorHandler(async (req, res, next) => {
-  const userOrders = await Order.find({ user: req.user._id });
+  const userOrders = await Order.find({ user: req.body.id });
 
   res.status(201).json({ success: true, userOrders });
 });

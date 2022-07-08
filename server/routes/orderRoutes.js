@@ -10,7 +10,7 @@ const {authorizedRole} = require("../middleware/authorizedRole");
 
   router.post("/create/order", createOrder);
 
-  router.get("/get/user/orders", getUserOrders);
+  router.post("/get/user/orders", getUserOrders);
 
   router.put("/add/feedback/:orderNumber",addFeedbackForOrderNumber)
 

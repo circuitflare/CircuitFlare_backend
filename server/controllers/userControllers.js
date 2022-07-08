@@ -149,15 +149,13 @@ exports.forgotPassword = async (req, res, next) => {
     // var resetPasswordUrl = `${req.protocol}://${req.get("host")}/user/password/reset/${resetToken}`;
 
     //when testing with frontend
-    // var resetPasswordUrl = `${process.env.FRONTEND_URL}/reset/password/${resetToken}`;
+    var resetPasswordUrl = `${process.env.FRONTEND_URL}/reset/password/${resetToken}`;
 
     //when hosting in heroku
     // var resetPasswordUrl = `${req.protocol}://${req.get(
     //   "host"
     // )}/reset/password/${resetToken}`;
-
-    //when hosted the frontend part to custom domain    
-    var resetPasswordUrl = `https://www.circuitflare.com/reset/password/${resetToken}`;
+   
 
     const message = `Dear ${user.username}, \n\nYour Reset Password Url is :- ${resetPasswordUrl} 
     \n\nThis Link Will Expire In 15 Minutes.Thank you \n\nRegards, \nCircuit Flare Team`;
@@ -200,12 +198,12 @@ exports.forgotUsername = async (req, res, next) => {
     // var resetPasswordUrl = `${req.protocol}://${req.get("host")}/user/username/reset/${resetToken}`;
 
     //when testing with frontend
-    // var resetPasswordUrl = `${process.env.FRONTEND_URL}/reset/username/${resetToken}`;
+    var resetPasswordUrl = `${process.env.FRONTEND_URL}/reset/username/${resetToken}`;
 
     //when hosting in heroku
-    var resetPasswordUrl = `${req.protocol}://${req.get(
-      "host"
-    )}/reset/username/${resetToken}`;
+    // var resetPasswordUrl = `${req.protocol}://${req.get(
+    //   "host"
+    // )}/reset/username/${resetToken}`;
 
     const message = `Dear ${user.username}, \n\nYour Reset Username Url is :- ${resetPasswordUrl} 
     \n\nThis Link Will Expire In 15 Minutes.Thank you \n\nRegards, \nCircuit Flare Team`;
