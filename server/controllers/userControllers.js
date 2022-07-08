@@ -27,7 +27,9 @@ exports.registerUser = asyncErrorHandler(async (req, res, next) => {
     httpOnly: true,
     expires: new Date(
       Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
-    ),
+    ), //days to ms
+    sameSite: "none",
+    secure: true,
   });
 
   //to send email
@@ -67,6 +69,8 @@ exports.loginUser = asyncErrorHandler(async (req, res, next) => {
     expires: new Date(
       Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
     ), //days to ms
+    sameSite: "none",
+    secure: true,
   });
 
   res.status(201).json({
@@ -313,14 +317,12 @@ exports.getOrderCountOfUser = asyncErrorHandler(async (req, res, next) => {
 exports.getBasketItems = asyncErrorHandler(async (req, res, next) => {
   const user = await User.findOne({ email: req.params.email });
 
-  res
-    .status(200)
-    .json({
-      success: true,
-      basketItems: user.basketItems,
-      totalBasketItems: user.totalBasketItems,
-      totalBasketAmount: user.totalBasketAmount,
-    });
+  res.status(200).json({
+    success: true,
+    basketItems: user.basketItems,
+    totalBasketItems: user.totalBasketItems,
+    totalBasketAmount: user.totalBasketAmount,
+  });
 });
 
 //store basket items

@@ -31,6 +31,8 @@ exports.adminLogin = asyncErrorHandler(async (req, res, next) => {
     expires: new Date(
       Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
     ), //days to ms
+    sameSite: "none",
+    secure: true,
   });
 
   res.status(201).json({
@@ -77,19 +79,17 @@ exports.adminForgotPassword = async (req, res, next) => {
     \n\nThis Link Will Expire In 15 Minutes.Thank you \n\nRegards, \nCircuit Flare Team`;
 
     await sendEmail({
-      email:"deepak@circuitflare.com",
+      email: "deepak@circuitflare.com",
       // email:"bhaveshdamor5555@gmail.com",
       subject: "Cicuit Flare Admin Password Recovery",
       message,
     });
 
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: `A Reset Password Link Sent!`,
-        resetToken,
-      });
+    res.status(200).json({
+      success: true,
+      message: `A Reset Password Link Sent!`,
+      resetToken,
+    });
   } catch (err) {
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
