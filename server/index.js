@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 
-const cookieParser = require("cookie-parser");
 const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -34,12 +33,9 @@ const order = require("./routes/orderRoutes");
 const admin = require("./routes/adminRoutes");
 
 //middlewares
-app.use(cors({
-  credentials : true
-}))
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 
 //routes
 app.use("/api/user", user);
@@ -61,11 +57,11 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Circuit flare backend" });
 });
 
-app.use(express.static(__dirname)); //here is important thing - no static directory, because all static :)
+// app.use(express.static(__dirname)); //here is important thing - no static directory, because all static :)
 
-app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
+// app.get("/*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "index.html"));
+// });
 
 app.listen(port, () => {
   console.log(`Server running on port : ${port}`);

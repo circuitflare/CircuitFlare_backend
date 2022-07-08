@@ -23,14 +23,14 @@ exports.registerUser = asyncErrorHandler(async (req, res, next) => {
   //generate token
   const token = user.generateToken();
 
-  res.cookie("logintoken", token, {
-    httpOnly: true,
-    expires: new Date(
-      Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
-    ), //days to ms
-    sameSite: "none",
-    secure: true,
-  });
+  // res.cookie("logintoken", token, {
+  //   httpOnly: true,
+  //   expires: new Date(
+  //     Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+  //   ), //days to ms
+  //   sameSite: "none",
+  //   secure: true,
+  // });
 
   //to send email
   await sendEmail(
@@ -64,14 +64,14 @@ exports.loginUser = asyncErrorHandler(async (req, res, next) => {
 
   const token = user.generateToken();
 
-  res.cookie("logintoken", token, {
-    httpOnly: true,
-    expires: new Date(
-      Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
-    ), //days to ms
-    sameSite: "none",
-    secure: true,
-  });
+  // res.cookie("logintoken", token, {
+  //   httpOnly: true,
+  //   expires: new Date(
+  //     Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+  //   ), //days to ms
+  //   sameSite: "none",
+  //   secure: true,
+  // });
 
   //for production env
 
@@ -80,13 +80,12 @@ exports.loginUser = asyncErrorHandler(async (req, res, next) => {
     success: true,
     user,
     token,
-    res,
   });
 });
 
 //to log out
 exports.loggingOutUser = asyncErrorHandler(async (req, res, next) => {
-  res.clearCookie("logintoken", { path: "/" });
+  // res.clearCookie("logintoken", { path: "/" });
 
   res.status(200).json({ success: true, message: "Logged Out!" });
 });

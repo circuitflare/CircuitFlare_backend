@@ -25,14 +25,14 @@ const {authorizedRole} = require("../middleware/authorizedRole");
 
   router.post("/login", loginUser);
   
-  router.get("/logout", authenticatedUser, loggingOutUser);
+  router.get("/logout", loggingOutUser);
   
-  router.get("/me", authenticatedUser, loggedInUser);
+  router.get("/me", loggedInUser);
 
-  router.put("/me/update_password", authenticatedUser, updatePassword);
+  router.put("/me/update_password", updatePassword);
 
   //forgot password routes
-router.post("/password/forgot" , forgotPassword);
+router.post("/password/forgot", forgotPassword);
 
 router.put("/password/reset/:token" , resetPassword);
 

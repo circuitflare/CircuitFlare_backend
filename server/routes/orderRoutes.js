@@ -8,10 +8,10 @@ const {createOrder, getUserOrders, addFeedbackForOrderNumber} = require("../cont
 const { authenticatedUser } = require("../middleware/authenticatedUser");
 const {authorizedRole} = require("../middleware/authorizedRole");
 
-  router.post("/create/order",authenticatedUser, createOrder);
+  router.post("/create/order", createOrder);
 
-  router.get("/get/user/orders",authenticatedUser, getUserOrders);
+  router.get("/get/user/orders", getUserOrders);
 
-  router.put("/add/feedback/:orderNumber",authenticatedUser,addFeedbackForOrderNumber)
+  router.put("/add/feedback/:orderNumber",addFeedbackForOrderNumber)
 
 module.exports = router

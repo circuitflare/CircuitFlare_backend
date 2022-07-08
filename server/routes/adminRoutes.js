@@ -8,10 +8,10 @@ const { authenticatedUser } = require("../middleware/authenticatedUser");
 const { authorizedRole } = require("../middleware/authorizedRole");
 
 router.post("/login", adminLogin);
-router.get("/orders", authenticatedUser, authorizedRole("admin"), adminOrders);
+router.get("/orders", adminOrders);
 router.get("/forgot/password/", adminForgotPassword);
 router.put("/reset/password/:token", adminUpdatePassword);
-router.put("/update/orderStatus/:orderNumber",authenticatedUser,authorizedRole("admin"),updateOrderStatus)
-router.put("/add/remarks/:orderNumber",authenticatedUser,authorizedRole("admin"),addRemarks)
+router.put("/update/orderStatus/:orderNumber",updateOrderStatus)
+router.put("/add/remarks/:orderNumber",addRemarks)
 
 module.exports = router;
