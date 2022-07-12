@@ -99,7 +99,7 @@ exports.loggedInUser = asyncErrorHandler(async (req, res, next) => {
 exports.updatePassword = asyncErrorHandler(async (req, res, next) => {
   const { currPassword, newPassword, confirmPassword } = req.body;
 
-  const user = await User.findById(req.user.id).select("+password");
+  const user = await User.findById(req.body.id).select("+password");
 
   const isPasswordMatched = await bcrypt.compare(currPassword, user.password);
 
