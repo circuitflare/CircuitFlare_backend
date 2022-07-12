@@ -149,7 +149,7 @@ exports.forgotPassword = async (req, res, next) => {
     // var resetPasswordUrl = `${req.protocol}://${req.get("host")}/user/password/reset/${resetToken}`;
 
     //when testing with frontend
-    var resetPasswordUrl = `${process.env.FRONTEND_URL}/reset/password/${resetToken}`;
+    var resetPasswordUrl = `https://circuitflare.com/reset/password/${resetToken}`;
 
     //when hosting in heroku
     // var resetPasswordUrl = `${req.protocol}://${req.get(
@@ -198,7 +198,7 @@ exports.forgotUsername = async (req, res, next) => {
     // var resetPasswordUrl = `${req.protocol}://${req.get("host")}/user/username/reset/${resetToken}`;
 
     //when testing with frontend
-    var resetPasswordUrl = `${process.env.FRONTEND_URL}/reset/username/${resetToken}`;
+    var resetPasswordUrl = `https://circuitflare.com/reset/username/${resetToken}`;
 
     //when hosting in heroku
     // var resetPasswordUrl = `${req.protocol}://${req.get(
