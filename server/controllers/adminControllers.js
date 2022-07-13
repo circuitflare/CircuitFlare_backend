@@ -71,9 +71,7 @@ exports.adminForgotPassword = async (req, res, next) => {
     // var resetPasswordUrl = `${process.env.FRONTEND_URL}/reset/password/${resetToken}`;
 
     //when hosting in heroku
-    var resetPasswordUrl = `${req.protocol}://${req.get(
-      "host"
-    )}/admin/reset/password?token=${resetToken}`;
+    var resetPasswordUrl = `https://circuitflare.com/admin/reset/password?token=${resetToken}`;
 
     const message = `Dear admin, \n\nYour Reset Password Url is :- ${resetPasswordUrl} 
     \n\nThis Link Will Expire In 15 Minutes.Thank you \n\nRegards, \nCircuit Flare Team`;
@@ -137,14 +135,23 @@ exports.adminUpdatePassword = asyncErrorHandler(async (req, res, next) => {
     .json({ success: true, message: "Password Reseted Successfully" });
 });
 
-//update order status
+
+//update order status & shippingInfoRemarks
 exports.updateOrderStatus = asyncErrorHandler(async (req, res, next) => {
   const order = await Order.findOne({ orderNumber: req.params.orderNumber });
 
-  if (req.body.orderStatus === "") {
-    order.orderStatus = "Processing";
+  if (req.body.purpose === "orderStatus") {
+    if (req.body.orderStatus === "") {
+      order.orderStatus = "Processing";
+    } else {
+      order.orderStatus = req.body.orderStatus;
+    }
   } else {
-    order.orderStatus = req.body.orderStatus;
+    if (req.body.shippingInfoRemarks === "") {
+      order.shippingInfoRemarks = "";
+    } else {
+      order.shippingInfoRemarks = req.body.shippingInfoRemarks;
+    }
   }
 
   await order.save();

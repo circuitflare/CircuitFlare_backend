@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
   billingInfo: [],
-  usedBillingInfo:{},
+  usedBillingInfo: {},
   deliveryInfo: {},
   cartItems: [],
   userId: {
@@ -52,8 +52,12 @@ const orderSchema = new mongoose.Schema({
     type: String,
     default: "-",
   },
-  remarks:[],
+  remarks: [],
   razorpay_payment_id: String,
+  shippingInfoRemarks: {
+    type: String,
+    default: "",
+  },
 
   deliveredAt: Date,
 
