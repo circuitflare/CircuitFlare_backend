@@ -2,54 +2,8 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
   billingInfo: [],
-  deliveryInfo: {
-    address1: {
-      type: String,
-      required: true,
-    },
-    address2: {
-      type: String,
-      required: true,
-    },
-    attention: {
-      type: String,
-    },
-    firstname: {
-      type: String,
-      required: true,
-    },
-    lastname: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-    state: {
-      type: String,
-      required: true,
-    },
-    company: {
-      type: String,
-    },
-    zipCode: {
-      type: String,
-      required: true,
-    },
-    phone: {
-      type: String,
-      required: true,
-    },
-    landmark: {
-      type: String,
-    },
-  },
-
+  usedBillingInfo:{},
+  deliveryInfo: {},
   cartItems: [],
   userId: {
     type: String,
