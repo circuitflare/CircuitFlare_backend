@@ -53,6 +53,7 @@ const orderSchema = new mongoose.Schema({
     default: "-",
   },
   remarks: [],
+  hsnCode:[],
   razorpay_payment_id: String,
   shippingInfoRemarks: {
     type: String,

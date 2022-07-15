@@ -173,3 +173,18 @@ exports.addRemarks = asyncErrorHandler(async (req, res, next) => {
 
   res.status(201).json({ success: true, order });
 });
+
+//update hsn code for products on order details page
+exports.addHsnCode = asyncErrorHandler(async (req, res, next) => {
+  const order = await Order.findOne({ orderNumber: req.params.orderNumber });
+
+  if (req.body.hsnCode.length > 0) {
+    order.hsnCode = req.body.hsnCode;
+  } else {
+    order.hsnCode = [];
+  }
+
+  await order.save();
+
+  res.status(201).json({ success: true, order });
+});

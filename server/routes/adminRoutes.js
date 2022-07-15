@@ -13,5 +13,7 @@ router.get("/forgot/password/", adminForgotPassword);
 router.put("/reset/password/:token", adminUpdatePassword);
 router.put("/update/orderStatus/:orderNumber",updateOrderStatus)
 router.put("/add/remarks/:orderNumber",addRemarks)
+router.put("/add/hsncode/:orderNumber",addHsnCode)
+
 
 module.exports = router;
