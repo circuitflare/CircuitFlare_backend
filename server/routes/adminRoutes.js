@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { adminLogin, adminOrders, adminUpdatePassword, adminForgotPassword,updateOrderStatus,addRemarks } = require("../controllers/adminControllers");
+const { adminLogin, adminOrders, adminUpdatePassword, adminForgotPassword,updateOrderStatus,addRemarks,addHsnCode } = require("../controllers/adminControllers");
 
 //middlewares
 const { authenticatedUser } = require("../middleware/authenticatedUser");
